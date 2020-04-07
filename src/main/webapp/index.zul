@@ -3,6 +3,6 @@
 		viewModel="@id('vm')@init('test.MyViewModel')"
 		validationMessages="@id('vmsgs')">
 		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
-		<button label="add" onClick="@command('cmd')"/>
+		<button label="addee" onClick="@command('cmd')"/>
 	</window>
 </zk>
