@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_4.dtd">
+
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <New id="Snow" class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>jdbc/Snow</Arg>
+        <Arg>
+            <New class="org.apache.commons.dbcp2.BasicDataSource">
+
+                <Set name="driverClassName">com.snowflake.client.jdbc.SnowflakeDriver</Set>
+
+
+                <Set name="url">jdbc:snowflake://uc18949.west-europe.azure.snowflakecomputing.com</Set>
+                <Set name="username">USR_DABO</Set>
+                <Set name="password">#Dabo@2020!</Set>
+                <Set name="defaultSchema">SCH_ELABORATE_DATA</Set>
+              <Set name="defaultCatalog">DATASCIENCE_SHARE_DB</Set>
+
+
+
+
+
+
+
+            </New>
+        </Arg>
+
+    </New>
+</Configure>

@@ -1,0 +1,9 @@
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"  viewModel="@id('vm')@init('test.LotViewModel')">
+        <hlayout><label value="Lots"  style="font-size:34px" /></hlayout>
+<separator height="100PX" ></separator>
+        <hlayout><label value="Nb de Lots terminés"   /> <label value="@load(vm.nbLotTermines)"   /></hlayout>
+
+
+    </window>
+</zk>
