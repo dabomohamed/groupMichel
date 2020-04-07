@@ -4,5 +4,7 @@
 		validationMessages="@id('vmsgs')">
 		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
 		<button label="addee" onClick="@command('cmd')"/>
+		<charts id="chart" type="line" title="Season Average Temperature"
+				apply="test.FirstChartComposer"/>
 	</window>
 </zk>

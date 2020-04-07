@@ -41,6 +41,11 @@
 	</pluginRepositories>
 	<dependencies>
 		<dependency>
+			<groupId>org.zkoss.chart</groupId>
+			<artifactId>zkcharts</artifactId>
+			<version>7.2.1.0-Eval</version>
+		</dependency>
+		<dependency>
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zkbind</artifactId>
 			<version>${zk.version}</version>
