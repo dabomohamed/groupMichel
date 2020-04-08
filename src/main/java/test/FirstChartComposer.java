@@ -7,24 +7,58 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Wire;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class FirstChartComposer extends SelectorComposer<Component> {
     @Wire
     Charts chart;
 
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-        // Create a predefined implementation category model
         CategoryModel model = new DefaultCategoryModel();
+        Connection connection = null;
+        DataSource ds= null;
+        try {
+            InitialContext ic2 = new InitialContext();
+            ds = (DataSource) ic2.lookup("jdbc/Snow");
+            connection =ds.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // nb de lots demarrés par années et mois
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("" +
+                    "SELECT YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_MEP_REEL ) AS YEAR, MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_MEP_REEL ) AS MONTH, count(*) FROM DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE WHERE  YEAR  IS NOT NULL AND MONTH IS NOT NULL AND UPPER( ESPECE) NOT LIKE '%POULETTE%' AND UPPER( ESPECE) NOT LIKE '%PLETTE%' GROUP BY YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_MEP_REEL ), MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_MEP_REEL ) ORDER BY YEAR, MONTH");
+            while(resultSet.next()) {
+                model.setValue("nb lots demarrés",resultSet.getString(2)+ "/"+ resultSet.getString(1), resultSet.getInt(3) );
 
-        // Set value to the model
-        model.setValue("Tokyo", "Spring", new Integer(11));
-        model.setValue("Tokyo", "Summer", new Integer(20));
-        model.setValue("Tokyo", "Fall", new Integer(16));
-        model.setValue("Tokyo", "Winter", new Integer(-2));
-        model.setValue("New York", "Spring", new Integer(6));
-        model.setValue("New York", "Summer", new Integer(12));
-        model.setValue("New York", "Fall", new Integer(10));
-        model.setValue("New York", "Winter", new Integer(2));
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // nb lots  terminés par années et mois
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("" +
+                    "SELECT YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) AS YEAR, MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) AS MONTH, count(STATUT_BANDE) FROM DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE WHERE STATUT_BANDE = 'TERMINEE' AND UPPER( ESPECE) NOT LIKE '%POULETTE%' AND UPPER( ESPECE) NOT LIKE '%PLETTE%' AND  YEAR  IS NOT null and MONTH IS NOT null GROUP BY YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ), MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) ORDER BY YEAR, MONTH ");
+            while(resultSet.next()) {
+                model.setValue("nb lots terminés",resultSet.getString(2)+ "/"+ resultSet.getString(1), resultSet.getInt(3) );
+            }
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        connection.close();
 
         // Set model to the chart
         chart.setModel(model);

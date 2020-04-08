@@ -3,8 +3,8 @@
 		viewModel="@id('vm')@init('test.MyViewModel')"
 		validationMessages="@id('vmsgs')">
 		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
-		<button label="addee" onClick="@command('cmd')"/>
-		<charts id="chart" type="line" title="Season Average Temperature"
+		
+		<charts id="chart" type="line" title="Nb de lots terminés par mois"
 				apply="test.FirstChartComposer"/>
 	</window>
 </zk>

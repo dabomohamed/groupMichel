@@ -4,6 +4,7 @@
 <separator height="100PX" ></separator>
         <hlayout><label value="Nb de Lots terminés"   /> <label value="@load(vm.nbLotTermines)"   /></hlayout>
 
-
+        <charts id="chart" type="line" title="Nb de lots demarrés / terminés par mois"
+                apply="test.FirstChartComposer"/>
     </window>
 </zk>

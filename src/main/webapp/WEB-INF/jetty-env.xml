@@ -6,24 +6,13 @@
         <Arg>jdbc/Snow</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp2.BasicDataSource">
-
                 <Set name="driverClassName">com.snowflake.client.jdbc.SnowflakeDriver</Set>
-
-
                 <Set name="url">jdbc:snowflake://uc18949.west-europe.azure.snowflakecomputing.com</Set>
                 <Set name="username">USR_DABO</Set>
                 <Set name="password">#Dabo@2020!</Set>
                 <Set name="defaultSchema">SCH_ELABORATE_DATA</Set>
-              <Set name="defaultCatalog">DATASCIENCE_SHARE_DB</Set>
-
-
-
-
-
-
-
+                <Set name="defaultCatalog">DATASCIENCE_SHARE_DB</Set>
             </New>
         </Arg>
-
     </New>
 </Configure>
