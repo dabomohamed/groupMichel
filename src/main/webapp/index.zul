@@ -1,10 +1,7 @@
 <zk>
-	<window apply="org.zkoss.bind.BindComposer"
-		viewModel="@id('vm')@init('test.MyViewModel')"
-		validationMessages="@id('vmsgs')">
-		<hlayout>count: <label value="@load(vm.count)" /></hlayout>
-		
-		<charts id="chart" type="line" title="Nb de lots terminés par mois"
-				apply="test.FirstChartComposer"/>
+	<window >
+
+
+
 	</window>
 </zk>
