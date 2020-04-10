@@ -57,6 +57,22 @@ public class FirstChartComposer extends SelectorComposer<Component> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+/*
+        // nb lots  livrés par années et mois
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("" +
+                    "SELECT YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) AS YEAR, MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) AS MONTH, count(STATUT_BANDE) FROM DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE WHERE STATUT_BANDE = 'TERMINEE' AND UPPER( ESPECE) NOT LIKE '%POULETTE%' AND UPPER( ESPECE) NOT LIKE '%PLETTE%' AND  YEAR  IS NOT null and MONTH IS NOT null GROUP BY YEAR(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ), MONTH(DATASCIENCE_SHARE_DB.SCH_ELABORATE_DATA.BANDE_ENTETE.DATE_DERNIER_ENLEVEMENT ) ORDER BY YEAR, MONTH ");
+            while(resultSet.next()) {
+                model.setValue("nb lots livrés",resultSet.getString(2)+ "/"+ resultSet.getString(1), resultSet.getInt(3) );
+            }
+            statement.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+ */
 
         connection.close();
 

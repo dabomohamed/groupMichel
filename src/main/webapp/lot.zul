@@ -3,8 +3,18 @@
         <hlayout><label value="Lots Hors poulettes"  style="font-size:34px" /></hlayout>
 <separator height="100PX" ></separator>
         <hlayout><label value="Nb de Lots terminés"   /> <label value="@load(vm.nbLotTermines)"   /></hlayout>
+        <label value="Nb de Lots livrés : "   /> <label value="@load(vm.nbLivraison)"   />
+
 
         <charts id="chart" type="line" title="Nb de lots demarrés / terminés par mois"
                 apply="test.FirstChartComposer"/>
+        <label value="Espece"  />
+        <combobox id="cmbColor" width="150px"
+                  model="@load(vm.grandeEspece)" selectedItem="@bind(vm.selectedEspece)">
+            <template name="model">
+                <comboitem label="@load(each)"
+                            />
+            </template>
+        </combobox>
     </window>
 </zk>
