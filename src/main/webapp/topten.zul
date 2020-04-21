@@ -1,0 +1,126 @@
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"  viewModel="@id('vm')@init('test.TopTenViewModel')">
+        <hlayout><label value="Top 10"  style="font-size:34px" /></hlayout>
+        <separator height="100PX" ></separator>
+        <hlayout><label value="Top 1O des gmq dindes" /> </hlayout>
+
+        <window>
+        <hlayout>
+            <combobox id="listEspeces"  width="250px"
+                  model="@load(vm.listespececolonne)" selectedItem="@bind(vm.selectedvalue)" >
+            <template name="model">
+                <comboitem label="@load(each.get(0))"/>
+            </template>
+        </combobox>
+
+            <separator></separator>
+
+            <combobox id="listes axes"  width="250px"
+                      model="@load(vm.colonneaxeanlyse)" selectedItem="@bind(vm.selectedvaluecolumn)" >
+                <template name="model">
+                    <comboitem label="@load(each.get(0))"/>
+                </template>
+            </combobox>
+    </hlayout>
+
+
+
+            <hlayout valign="left">
+                <grid id="MinMax"
+                      model="@load(vm.colonnemaxmin)"
+                      mold="paging">
+                    <columns width="200">
+                        <column  width="100"  label="MIN" align="left" />
+                        <column  width="100"  label="MAX" align="left" />
+
+                    </columns>
+                    <template name="model">
+                        <row>
+                            <label value="@load(each.get(0))" />
+                            <label value="@load(each.get(1))" />
+
+                        </row>
+                    </template>
+                </grid>
+            </hlayout>
+
+
+            <button label="show axe" onClick="axe.setVisible(true);"></button>
+            <button label="hide axe" onClick="axe.setVisible(false);"></button>
+
+
+        <hlayout valign="left">
+            <grid id="Mode"
+            model="@load(vm.columnmode)"
+            mold="paging">
+            <columns width="200">
+                <column  width="100"  label="GMQ_TOTAL" align="left" />
+                <column  width="100"  label="MODE" align="left" />
+                <column  id="axe" width="100"  label="AXE" align="left" />
+
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="@load(each.get(0))" />
+                    <label value="@load(each.get(1))" />
+                    <label value="@load(each.get(2))" />
+
+
+                </row>
+            </template>
+        </grid>
+        </hlayout>
+
+    </window>
+
+
+
+<window>
+        <separator/>
+        <separator/>
+        <separator/>
+
+        <grid id="top10"
+              model="@load(vm.columntopten)"
+              mold="paging"  >
+            <columns width="900">
+                <column  width="100"  label="GMQ" align="left" />
+                <column  width="100"  label="NUMERO_BANDE" align="left" />
+                <column  width="100"  label="CODE_ELEVEUR" align="left" />
+                <column  width="100"  label="ESPECE" align="left" />
+                <column  width="100"  label="TYPE_ANIMAL" align="left" />
+                <column  width="100"  label="MARGE_PA" align="left" />
+                <column  width="100"  label="INDICE_CONSO_TECH" align="left" />
+                <column  width="100"  label="DATE_MEP_REEL" align="left" />
+                <column  width="100"  label="DATE_DERNIER_ENLEVEMENT" align="left" />
+
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="@load(each.get(0))" />
+                    <label value="@load(each.get(1))" />
+                    <label value="@load(each.get(2))" />
+                    <label value="@load(each.get(3))" />
+                    <label value="@load(each.get(4))" />
+                    <label value="@load(each.get(5))" />
+                    <label value="@load(each.get(6))" />
+                    <label value="@load(each.get(7))" />
+                    <label value="@load(each.get(8))" />
+
+
+                </row>
+            </template>
+        </grid>
+
+
+        <separator/>
+        <separator/>
+
+<!--
+        < -->
+
+
+    </window>
+
+    </window>
+</zk>

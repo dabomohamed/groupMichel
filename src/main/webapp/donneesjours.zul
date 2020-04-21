@@ -1,0 +1,86 @@
+<zk>
+    <window apply="org.zkoss.bind.BindComposer"  viewModel="@id('vm')@init('test.GmqJoursViewModel')">
+        <hlayout><label value="Données Jours"  style="font-size:34px" /></hlayout>
+        <separator height="100PX" ></separator>
+        <hlayout><label value="Graphique poids saisi par espèce et par lot" /> </hlayout>
+
+        <window>
+        <hlayout><combobox id="listEspeces" width="250px"
+                  model="@load(vm.listespececolonne)" selectedItem="@bind(vm.selectedvalueespece)" >
+            <template name="model">
+                <comboitem label="@load(each)" value="@load(each)"/>
+            </template>
+        </combobox>
+    </hlayout>
+
+
+            <hlayout><combobox id="listLotParEspece" width="250px"
+                               model="@load(vm.columnlotbyespace)" selectedItem="@bind(vm.selectedvaluelotbyespece)" >
+                <template name="model">
+                    <comboitem label="@load(each)" value="@load(each)"/>
+                </template>
+            </combobox>
+            </hlayout>
+
+         <!--   <hlayout><combobox id="typeGmq" width="250px"
+                               model="@load(vm.listespececolonne)" selectedItem="@bind(vm.selectedvalue)" >
+                <template name="model">
+                    <comboitem label="@load(each.get(0))"/>
+                </template>
+            </combobox>
+            </hlayout>
+
+-->
+    </window>
+
+
+
+
+
+<window>
+        <separator/>
+        <separator/>
+        <separator/>
+
+        <grid id="GMQ"
+              model="@load(vm.columngmqbydays)"
+              mold="paging"  >
+            <columns width="200">
+                <column  width="100"  label="GMQ" align="left" />
+                <column  width="100"  label="POIDS" align="left" />
+                <column  width="100"  label="DELTA_POIDS" align="left" />
+                <column  width="100"  label="DATA_RELEVE" align="left" />
+
+            </columns>
+            <template name="model">
+                <row>
+                    <label value="@load(each.get(0))" />
+                    <label value="@load(each.get(1))" />
+                    <label value="@load(each.get(2))" />
+                    <label value="@load(each.get(3))" />
+
+
+
+                </row>
+            </template>
+        </grid>
+
+
+        <separator/>
+        <separator/>
+
+
+
+    <!-- <div children="@load(vm.types)" sclass="zk-model-demo-charts"> -->
+            <charts type="line"
+                    model="@bind(vm.model)" title="gmq"  />
+
+
+
+    </window>
+
+
+
+
+    </window>
+</zk>
